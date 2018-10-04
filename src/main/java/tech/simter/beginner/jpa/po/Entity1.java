@@ -6,7 +6,7 @@ import javax.persistence.*;
  * @author RJ
  */
 @Entity
-public class Actor {
+public class Entity1 {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
