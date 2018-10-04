@@ -12,6 +12,7 @@ public class Entity1 {
   private Integer id;
   @Column(length = 100, nullable = false, unique = true)
   private String name;
+  private String describe;
 
   public Integer getId() {
     return id;
@@ -27,5 +28,13 @@ public class Entity1 {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getDescribe() {
+    return describe;
+  }
+
+  public void setDescribe(String describe) {
+    this.describe = describe;
   }
 }
