@@ -15,5 +15,6 @@ public class Entity1 {
   private Integer id;
   @Column(length = 100, nullable = false, unique = true)
   private String name;
+  private String code;
   private String describe;
 }
