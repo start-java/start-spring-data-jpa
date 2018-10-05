@@ -13,7 +13,7 @@ public class Entity1 {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  @Column(length = 100, nullable = false, unique = true)
+  @Column(length = 100, unique = true)
   private String name;
   private String code;
   private String describe;
