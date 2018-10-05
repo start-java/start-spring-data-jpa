@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import tech.simter.beginner.jpa.UnitTestConfiguration;
-import tech.simter.beginner.jpa.dto.CodeNameInterface;
+import tech.simter.beginner.jpa.dto.CodeName;
 import tech.simter.beginner.jpa.po.Entity1;
 import tech.simter.beginner.jpa.repository.Entity1JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,11 +21,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringJUnitConfig(UnitTestConfiguration.class)
 @DataJpaTest
-class FindByCodeStartingWithOrderByCodeAscMethodTest {
+class ProjectionWithClassBasedMethodTest {
   private Entity1JpaRepository repository;
 
   @Autowired
-  FindByCodeStartingWithOrderByCodeAscMethodTest(Entity1JpaRepository repository) {
+  ProjectionWithClassBasedMethodTest(Entity1JpaRepository repository) {
     this.repository = repository;
   }
 
@@ -32,7 +33,8 @@ class FindByCodeStartingWithOrderByCodeAscMethodTest {
 
   @Test
   void notFound() {
-    assertTrue(repository.findByCodeStartingWithOrderByCodeAsc(codePrefix).isEmpty());
+    assertTrue(repository.findByCodeStartingWithOrderByCodeDesc(codePrefix).isEmpty());
+    assertFalse(repository.getByCode(codePrefix).isPresent());
   }
 
   @Test
@@ -48,15 +50,19 @@ class FindByCodeStartingWithOrderByCodeAscMethodTest {
       }).collect(Collectors.toList())
     );
 
-    // verify
-    List<CodeNameInterface> list = repository.findByCodeStartingWithOrderByCodeAsc(codePrefix);
+    // invoke and verify
+    List<CodeName> list = repository.findByCodeStartingWithOrderByCodeDesc(codePrefix);
     assertFalse(list.isEmpty());
-    int i = 0;
-    for (CodeNameInterface cn : list) {
-      Entity1 entity1 = originList.get(i);
+    int i = 0, topIndex = originList.size() - 1;
+    for (CodeName cn : list) {
+      Entity1 entity1 = originList.get(topIndex - i);
       assertEquals(entity1.getCode(), cn.getCode());
       assertEquals(entity1.getName(), cn.getName());
       i++;
     }
+    Optional<CodeName> one = repository.getByCode(codePrefix + max);
+    assertTrue(one.isPresent());
+    assertEquals(originList.get(2).getCode(), one.get().getCode());
+    assertEquals(originList.get(2).getName(), one.get().getName());
   }
 }

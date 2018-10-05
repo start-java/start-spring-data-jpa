@@ -50,6 +50,13 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
   @Query(value = "select code from Entity1 where code like ?1%")
   List<String> findAllCodeStartingWith(String codePrefix, Pageable pageable);
 
-  // test projection with interface
+  // test interface-based projection
   List<CodeNameInterface> findByCodeStartingWithOrderByCodeAsc(String codePrefix);
+
+  Optional<CodeNameInterface> findByCode(String code);
+
+  // test calss-based projection
+  List<CodeName> findByCodeStartingWithOrderByCodeDesc(String codePrefix);
+
+  Optional<CodeName> getByCode(String code);
 }
