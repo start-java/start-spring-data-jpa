@@ -8,35 +8,41 @@ import tech.simter.beginner.jpa.UnitTestConfiguration;
 import tech.simter.beginner.jpa.po.Entity1;
 import tech.simter.beginner.jpa.repository.Entity1JpaRepository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author RJ
  */
 @SpringJUnitConfig(UnitTestConfiguration.class)
 @DataJpaTest
-class GetNameByIdMethodTest {
+class GetCodeByIdMethodTest {
   private Entity1JpaRepository repository;
 
   @Autowired
-  GetNameByIdMethodTest(Entity1JpaRepository repository) {
+  GetCodeByIdMethodTest(Entity1JpaRepository repository) {
     this.repository = repository;
   }
 
+  private String codePrefix = "test";
+
   @Test
-  void foundNothing() {
-    assertNull(repository.getNameById(99));
+  void notFound() {
+    assertFalse(repository.getCodeById(99).isPresent());
   }
 
   @Test
-  void foundIt() {
+  void found() {
     // init data
+    String code = "test";
     Entity1 entity1 = new Entity1();
-    entity1.setName("test");
+    entity1.setCode(code);
     repository.saveAndFlush(entity1);
 
     // verify
-    assertEquals("test", repository.getNameById(entity1.getId()));
+    Optional<String> code2 = repository.getCodeById(entity1.getId());
+    assertTrue(code2.isPresent());
+    assertEquals(code, code2.get());
   }
 }

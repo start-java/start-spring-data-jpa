@@ -14,56 +14,37 @@ import java.util.Optional;
 /**
  * @author RJ
  */
-public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer> {
+public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, Entity1ContrastMethods {
+  /**
+   * Note: make sure the query has a single or empty result.
+   * <p>
+   * If the query result is empty (found nothing), return {@link Optional#EMPTY}.
+   */
+  @Query("select code from Entity1 where id = :id")
+  Optional<String> getCodeById(@Param("id") Integer id);
+
   /**
    * Note: make sure the query has a single or empty result.
    * <p>
    * If the query result is empty (found nothing), the return value is null.
    */
-  @Query("select name from Entity1 where id = :id")
-  String getNameById(@Param("id") Integer id);
+  @Query("select code from Entity1 where id = :id")
+  String getCodeById2(@Param("id") Integer id);
 
   /**
-   * Use native query for set 'limit 1' in query-sql directly.
-   * <p>
-   * Because jpql not support 'limit' symbol, and the 'First' or 'Top' in method name
-   * only support fetch the whole entity. But need to note, this does not cross database.
-   * <p>
-   * If the query result is empty (found nothing), the return value is null.
+   * Note: if entity exists and its code value is null, throw NPE.
    */
-  @Query(
-    value = "select code from entity1 where code like ?1% order by code desc limit 1",
-    nativeQuery = true
-  )
-  String getMaxCode(String codePrefix);
+  default Optional<String> getMaxCode(String codePrefix) {
+    return findAllCodeStartingWith(codePrefix, PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "code")))
+      .stream().findFirst();
+  }
 
   /**
-   * Use native query for set 'limit 1' in query-sql directly to get a single result.
-   * <p>
-   * Because jpql not support 'limit' symbol, and the 'First' or 'Top' in method name
-   * only support fetch the whole entity. But need to note, this does not cross database.
-   * <p>
-   * If the query result is empty (found nothing), the return value is {@link Optional#EMPTY}.
-   */
-  @Query(
-    value = "select code from entity1 where code like ?1% order by code desc limit 1",
-    nativeQuery = true
-  )
-  Optional<String> getMaxCodeOptional(String codePrefix);
-
-  /**
+   * This method is only for {@link #getMaxCode(String)}
    * Use {@link Pageable} to set the limit and order by.
    *
    * @return the query result or empty list if found nothing
    */
   @Query(value = "select code from Entity1 where code like ?1%")
   List<String> findAllCodeStartingWith(String codePrefix, Pageable pageable);
-
-  /**
-   * Note: if entity exists and its code value is null, would be throw NPE.
-   */
-  default Optional<String> getMaxCode2(String codePrefix) {
-    return findAllCodeStartingWith(codePrefix, PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "code")))
-      .stream().findFirst();
-  }
 }

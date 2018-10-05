@@ -8,11 +8,11 @@ import tech.simter.beginner.jpa.UnitTestConfiguration;
 import tech.simter.beginner.jpa.po.Entity1;
 import tech.simter.beginner.jpa.repository.Entity1JpaRepository;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author RJ
@@ -32,13 +32,13 @@ class GetMaxCodeMethodTest {
   @Test
   void notFound() {
     // without data
-    assertNull(repository.getMaxCode(codePrefix));
+    assertFalse(repository.getMaxCode(codePrefix).isPresent());
 
     // with some data
     Entity1 entity1 = new Entity1();
-    entity1.setName("_" + codePrefix);
+    entity1.setCode("_" + codePrefix);
     repository.saveAndFlush(entity1);
-    assertNull(repository.getMaxCode(codePrefix));
+    assertFalse(repository.getMaxCode(codePrefix).isPresent());
   }
 
   @Test
@@ -54,6 +54,8 @@ class GetMaxCodeMethodTest {
     );
 
     // verify
-    assertEquals(codePrefix + max, repository.getMaxCode(codePrefix));
+    Optional<String> maxCodeOptional = repository.getMaxCode(codePrefix);
+    assertTrue(maxCodeOptional.isPresent());
+    assertEquals(codePrefix + max, maxCodeOptional.get());
   }
 }
