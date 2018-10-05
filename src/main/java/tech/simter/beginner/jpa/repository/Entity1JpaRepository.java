@@ -6,6 +6,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import tech.simter.beginner.jpa.dto.CodeName;
+import tech.simter.beginner.jpa.dto.CodeNameInterface;
 import tech.simter.beginner.jpa.po.Entity1;
 
 import java.util.List;
@@ -47,4 +49,7 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
    */
   @Query(value = "select code from Entity1 where code like ?1%")
   List<String> findAllCodeStartingWith(String codePrefix, Pageable pageable);
+
+  // test projection with interface
+  List<CodeNameInterface> findByCodeStartingWithOrderByCodeAsc(String codePrefix);
 }
