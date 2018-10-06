@@ -1,4 +1,4 @@
-package tech.simter.beginner.jpa;
+package tech.simter.start.springdatajpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

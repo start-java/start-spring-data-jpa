@@ -1,4 +1,4 @@
-package tech.simter.beginner.jpa;
+package tech.simter.start.springdatajpa;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @author RJ
  */
 @Configuration
-@EnableJpaRepositories("tech.simter.beginner.jpa.repository")
-@EntityScan("tech.simter.beginner.jpa.po")
+@EnableJpaRepositories
+@EntityScan
 public class UnitTestConfiguration {
 }

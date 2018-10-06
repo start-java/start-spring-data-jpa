@@ -1,12 +1,12 @@
-package tech.simter.beginner.jpa.repository.entity1;
+package tech.simter.start.springdatajpa.repository.entity1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import tech.simter.beginner.jpa.UnitTestConfiguration;
-import tech.simter.beginner.jpa.po.Entity1;
-import tech.simter.beginner.jpa.repository.Entity1JpaRepository;
+import tech.simter.start.springdatajpa.repository.Entity1JpaRepository;
+import tech.simter.start.springdatajpa.UnitTestConfiguration;
+import tech.simter.start.springdatajpa.po.Entity1;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package tech.simter.beginner.jpa.repository;
+package tech.simter.start.springdatajpa.repository;
 
 import java.util.Optional;
 

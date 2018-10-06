@@ -4,5 +4,5 @@
   <!-- trace < debug < info < warn < error -->
   <root level="warn"/>
 
-  <logger name="tech.simter.beginner" level="warn"/>
+  <logger name="tech.simter.start" level="debug"/>
 </configuration>

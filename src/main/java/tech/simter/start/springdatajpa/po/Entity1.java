@@ -1,4 +1,4 @@
-package tech.simter.beginner.jpa.po;
+package tech.simter.start.springdatajpa.po;
 
 import lombok.Data;
 

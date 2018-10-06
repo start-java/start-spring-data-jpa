@@ -1,4 +1,4 @@
-package tech.simter.beginner.jpa.repository;
+package tech.simter.start.springdatajpa.repository;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -6,9 +6,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import tech.simter.beginner.jpa.dto.CodeName;
-import tech.simter.beginner.jpa.dto.CodeNameInterface;
-import tech.simter.beginner.jpa.po.Entity1;
+import tech.simter.start.springdatajpa.dto.CodeName;
+import tech.simter.start.springdatajpa.dto.CodeNameInterface;
+import tech.simter.start.springdatajpa.po.Entity1;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package tech.simter.beginner.jpa.dto;
+package tech.simter.start.springdatajpa.dto;
 
 /**
  * @author RJ
