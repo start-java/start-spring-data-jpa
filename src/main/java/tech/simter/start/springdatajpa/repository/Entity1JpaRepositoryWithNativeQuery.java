@@ -23,4 +23,7 @@ public interface Entity1JpaRepositoryWithNativeQuery extends JpaRepository<Entit
     nativeQuery = true
   )
   Optional<String> getMaxCode(String codePrefix);
+
+  @Query(value = "select code, name from #{#entityName} where code in :codes")
+  List<CodeNameInterface> findByCodeIn(@Param("codes") List<String> codes);
 }
