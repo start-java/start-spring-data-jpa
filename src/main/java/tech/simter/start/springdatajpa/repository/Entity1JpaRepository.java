@@ -74,4 +74,7 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
   default int updateStatusToDone(Integer value) {
     return updateStatusById(value, Status.Done);
   }
+
+  @Query("select status from #{#entityName} where id = :id")
+  Optional<Status> getStatusById(@Param("id") Integer id);
 }
