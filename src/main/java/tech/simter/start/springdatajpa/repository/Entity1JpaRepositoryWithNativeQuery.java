@@ -1,9 +1,14 @@
 package tech.simter.start.springdatajpa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import tech.simter.start.springdatajpa.dto.CodeNameInterface;
 import tech.simter.start.springdatajpa.po.Entity1;
+import tech.simter.start.springdatajpa.po.Entity1.Status;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,4 +31,12 @@ public interface Entity1JpaRepositoryWithNativeQuery extends JpaRepository<Entit
 
   @Query(value = "select code, name from #{#entityName} where code in :codes")
   List<CodeNameInterface> findByCodeIn(@Param("codes") List<String> codes);
+
+  @Modifying(clearAutomatically = true)
+  @Query(value = "update entity1 set status = :#{#status.value()} where id = :id", nativeQuery = true)
+  int updateStatusById(@Param("id") Integer id, @Param("status") Status status);
+
+  default int updateStatusToDone(Integer value) {
+    return updateStatusById(value, Status.Done);
+  }
 }
