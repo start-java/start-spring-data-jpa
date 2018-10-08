@@ -39,4 +39,7 @@ public interface Entity1JpaRepositoryWithNativeQuery extends JpaRepository<Entit
   default int updateStatusToDone(Integer value) {
     return updateStatusById(value, Status.Done);
   }
+
+  @Query(value = "select status from entity1 where id = :id", nativeQuery = true)
+  Optional<Status> getStatusById(@Param("id") Integer id);
 }
