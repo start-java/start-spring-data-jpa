@@ -59,4 +59,6 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
   List<CodeName> findByCodeStartingWithOrderByCodeDesc(String codePrefix);
 
   Optional<CodeName> getByCode(String code);
+
+  List<CodeNameInterface> findByCodeIn(List<String> codes);
 }
