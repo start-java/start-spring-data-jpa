@@ -21,6 +21,8 @@ logging:
     #---- hibernate sql ----#
     org.hibernate.SQL: DEBUG                             # DEBUG for log by logger
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE # TRACE for show sql param value, such as 'binding parameter [N] as [SQL-TYPE] - [VALUE]'
+    org.hibernate.metamodel.model.convert.internal.NamedEnumValueConverter: TRACE # TRACE for show sql param value, such as 'Binding [RESOLVED] to parameter: [1]'
+    org.hibernate.metamodel.model.convert.internal.OrdinalEnumValueConverter: TRACE # TRACE for show sql param value, such as 'Binding [0] to parameter: [1]'
 
     #---- hibernate jpql ----#
     #org.hibernate.engine.query.spi.HQLQueryPlan: TRACE   # TRACE for show jpql
