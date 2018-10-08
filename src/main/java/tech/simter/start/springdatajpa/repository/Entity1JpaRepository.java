@@ -4,11 +4,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import tech.simter.start.springdatajpa.dto.CodeName;
 import tech.simter.start.springdatajpa.dto.CodeNameInterface;
 import tech.simter.start.springdatajpa.po.Entity1;
+import tech.simter.start.springdatajpa.po.Entity1.Status;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,4 +63,15 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
   Optional<CodeName> getByCode(String code);
 
   List<CodeNameInterface> findByCodeIn(List<String> codes);
+
+  @Modifying(clearAutomatically = true)
+  @Query("update #{#entityName} set status = :status where id = :id")
+  int updateStatusById(@Param("id") Integer id, @Param("status") Status status);
+
+  /**
+   * For test default method
+   */
+  default int updateStatusToDone(Integer value) {
+    return updateStatusById(value, Status.Done);
+  }
 }
