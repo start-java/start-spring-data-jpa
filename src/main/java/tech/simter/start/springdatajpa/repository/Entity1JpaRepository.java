@@ -62,6 +62,8 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
 
   Optional<CodeName> getByCode(String code);
 
+  Optional<Entity1> findByName(String name);
+
   List<CodeNameInterface> findByCodeIn(List<String> codes);
 
   @Modifying(clearAutomatically = true)
