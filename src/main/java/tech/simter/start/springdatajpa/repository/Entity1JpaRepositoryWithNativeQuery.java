@@ -34,6 +34,9 @@ public interface Entity1JpaRepositoryWithNativeQuery extends JpaRepository<Entit
     return updateStatusById(value, Status.Done);
   }
 
+  /**
+   * Could not query a {@link Status} enum if use native query. Only can query the {@link Status} enums value.
+   */
   @Query(value = "select status from entity1 where id = :id", nativeQuery = true)
-  Optional<Status> getStatusById(@Param("id") Integer id);
+  Optional<Integer> getStatusById(@Param("id") Integer id);
 }

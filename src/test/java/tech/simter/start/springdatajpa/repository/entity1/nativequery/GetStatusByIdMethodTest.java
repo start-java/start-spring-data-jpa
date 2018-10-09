@@ -38,10 +38,10 @@ class GetStatusByIdMethodTest {
     repository.save(e);
 
     // invoke
-    Optional<Status> status = repository.getStatusById(e.getId());
+    Optional<Integer> status = repository.getStatusById(e.getId());
 
     // verify
     assertTrue(status.isPresent());
-    assertEquals(Status.Todo, status.get());
+    assertEquals(Status.Todo.value(), status.get());
   }
 }
