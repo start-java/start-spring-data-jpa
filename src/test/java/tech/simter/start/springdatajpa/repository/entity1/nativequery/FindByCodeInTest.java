@@ -42,6 +42,7 @@ class FindByCodeInTest {
 
   @Test
   void nullListParamAlsoOk() {
+    // need to use 'code in (:codes)'
     // will generated '...where ...code in (?)' and binding parameter [1] as [VARCHAR] - [null]
     repository.findByCodeIn(null);
   }
