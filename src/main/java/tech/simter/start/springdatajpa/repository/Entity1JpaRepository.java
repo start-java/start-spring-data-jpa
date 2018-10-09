@@ -1,8 +1,5 @@
 package tech.simter.start.springdatajpa.repository;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -36,28 +33,19 @@ public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, E
   String getCodeById2(@Param("id") Integer id);
 
   /**
-   * Note: if entity exists and its code value is null, throw NPE.
+   * Use max aggregate function to get the max code.
+   * <p>
+   * If the query result is empty (found nothing), return {@link Optional#EMPTY}.
    */
-  default Optional<String> getMaxCode(String codePrefix) {
-    return findAllCodeStartingWith(codePrefix, PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "code")))
-      .stream().findFirst();
-  }
-
-  /**
-   * This method is only for {@link #getMaxCode(String)}
-   * Use {@link Pageable} to set the limit and order by.
-   *
-   * @return the query result or empty list if found nothing
-   */
-  @Query(value = "select code from Entity1 where code like ?1%")
-  List<String> findAllCodeStartingWith(String codePrefix, Pageable pageable);
+  @Query("select max(code) from Entity1 where code like ?1%")
+  Optional<String> getMaxCode(String codePrefix);
 
   // test interface-based projection
   List<CodeNameInterface> findByCodeStartingWithOrderByCodeAsc(String codePrefix);
 
   Optional<CodeNameInterface> findByCode(String code);
 
-  // test calss-based projection
+  // test class-based projection
   List<CodeName> findByCodeStartingWithOrderByCodeDesc(String codePrefix);
 
   Optional<CodeName> getByCode(String code);
