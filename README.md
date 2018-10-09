@@ -1,10 +1,12 @@
 # Start spring-data-jpa
 
-## 1. spring-data-jpa 相关
+## 1. spring-data-jpa correlation
 
-## 2. JPA 相关
+TODO
 
-### 2.1. JPA 标准规范
+## 2. JPA correlation
+
+### 2.1. JPA standard specification
 
 - [JSR 338: Java Persistence 2.2](https://jcp.org/en/jsr/detail?id=338) - Maintenance Release 2017-08-04
 - [JSR 338: Java Persistence 2.1](https://jcp.org/en/jsr/detail?id=338) - Final Release 2013-05-22
@@ -14,7 +16,7 @@
 ### 2.2. JPA API
 
 - 2017-08-21 javax.persistence:javax.persistence-api:2.2
-- 2013-05-21 javax:javaee-api:7 (内含 JPA2.1)
+- 2013-05-21 javax:javaee-api:7 (contain JPA2.1)
 - 2007-07-24 javax.persistence:persistence-api:1.0.2
 - 2018-03-03 org.hibernate.javax.persistence:hibernate-jpa-2.2-api:1.0.0.Beta2
 - 2013-07-27 org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final
@@ -34,9 +36,9 @@
 - 2013-08-28 org.batoo.jpa:batoo-jpa:2.0.1.2 (JPA2.0) [Batoo](http://batoo.org)
 - 2015-12-18 org.springframework.data:spring-data-jpa:1.9.2.RELEASE [Spring Data JPA](http://projects.spring.io/spring-data-jpa)
 
-> spring-boot 将在 2.1 版使用 Hibernate-5.3 以支持 JPA 2.2。
+> spring-boot will support JPA 2.2 after future release 2.1 version with Hibernate-5.3.
 
-### 2.4. JPA 2.0 主要特征
+### 2.4. JPA 2.0 main features
 
 - Expanded object-relational mapping functionality
 - standardization of SQL Hints
@@ -44,7 +46,7 @@
 - support for validation
 - Shared object cache support.
 
-### 2.5. JPA 2.1 主要特征
+### 2.5. JPA 2.1 main features
 
 - Converters - allowing custom code conversions between database and object types.
 - Criteria Update/Delete - allows bulk updates and deletes through the Criteria API.
@@ -53,7 +55,7 @@
 - Entity Graphs - allow partial or specified fetching or merging of objects.
 - JPQL/Criteria enhancements - arithmetic sub-queries, generic database functions, join ON clause, TREAT option.
 
-### 2.6. JPA 2.2 主要特征
+### 2.6. JPA 2.2 main features
 
 - Add ability to stream the result of a query execution
 - Add @Repeatable
@@ -61,14 +63,14 @@
 - Allow AttributeConverters to support CDI injection
 - updated persistence provider discovery mechanism for Java 9 Modules
 
-[jcp - Short changelog](https://jcp.org/aboutJava/communityprocess/maintenance/jsr338/ChangeLog-JPA-2.2-MR.txt), 
-[What’s new in JPA 2.2](https://www.thoughts-on-java.org/whats-new-in-jpa-2-2/), 
-[infoQ - JPA 2.2带来一些备受期待的变更](http://www.infoq.com/cn/articles/JPA-2.2-Brings-Highly-Anticipated-Changes)
+> [jcp - Short changelog](https://jcp.org/aboutJava/communityprocess/maintenance/jsr338/ChangeLog-JPA-2.2-MR.txt)  
+[What’s new in JPA 2.2](https://www.thoughts-on-java.org/whats-new-in-jpa-2-2/)  
+[infoQ - JPA 2.2 带来一些备受期待的变更](http://www.infoq.com/cn/articles/JPA-2.2-Brings-Highly-Anticipated-Changes)
 
-## 3. 相关教程
-- [JSR 338: Oracle 官方教程](https://docs.oracle.com/javaee/7/tutorial/partpersist.htm)
+## 3. Related tutorial
+- [JSR 338: Oracle official tutorial](https://docs.oracle.com/javaee/7/tutorial/partpersist.htm)
 
-## 4. 友情链接
+## 4. Friendly link 
 - [Wikipedia : Java Persistence API](https://en.wikipedia.org/wiki/Java_Persistence_API)
 - [Thoughts On Java: JPA 2.1 – 12 features every developer should know](http://www.thoughts-on-java.org/jpa-21-overview)
 - [IBM: Hibernate JPA 对象关系映射之关联关系映射策略](http://www.ibm.com/developerworks/cn/java/j-lo-jparelated)
