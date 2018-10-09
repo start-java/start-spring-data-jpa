@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * @author RJ
  */
-public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, Entity1ContrastMethods {
+public interface Entity1JpaRepository extends JpaRepository<Entity1, Integer>, Entity1ContrastMethods, Entity1CustomRepository {
   /**
    * Note: make sure the query has a single or empty result.
    * <p>
